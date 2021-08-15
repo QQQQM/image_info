@@ -1,3 +1,6 @@
+# 作用
+给定一个docker镜像，然后获取各个镜像层的ID
+
 # 使用方法
 ```python
 python main.py image_name(=busybox) [select_num = 0]
