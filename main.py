@@ -1,6 +1,7 @@
 import sys
 import json
 import docker
+from docker.models.images import Image
 
 def print_in_json (data):
     json_str = json.dumps(data, sort_keys=True, indent=2)
@@ -23,6 +24,10 @@ def test_if_exist(image_name):
     try:
         data = client.images.get(image_name)
         print(data)
+        print(type(data))
+        print(data.tags)
+        image_name = data.tags[0]
+
     except docker.errors.ImageNotFound as e:
         print("可能本地不存在", image_name, "镜像，出现 error:", e , "\n")
         err = pull_image(image_name,client)
@@ -76,5 +81,5 @@ def main():
         pass
 
 if __name__ == "__main__":
-
+    global image_name
     main()
